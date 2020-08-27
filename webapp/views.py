@@ -36,7 +36,6 @@ def download_thank_you(category):
     context = {"http_host": flask.request.host}
 
     version = flask.request.args.get("version", "")
-    versionPatch = flask.request.args.get("versionPatch", "")
     architecture = flask.request.args.get("architecture", "")
 
     # Sanitise for paths
@@ -48,7 +47,6 @@ def download_thank_you(category):
     if architecture and version_pattern.match(version):
         context["start_download"] = version and architecture
         context["version"] = version
-        context["versionPatch"] = versionPatch
         context["architecture"] = architecture
 
     # Add mirrors
@@ -150,11 +148,11 @@ def post_build():
         flask.abort(401)
 
     launchpad = Launchpad(
-        username="imagebuild",
-        token=os.environ["LAUNCHPAD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_SECRET"],
+        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
+        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
         session=session,
-        auth_consumer="image.build",
+        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
     )
 
     context = {}
@@ -255,11 +253,11 @@ def notify_build():
     )
 
     launchpad = Launchpad(
-        username="imagebuild",
-        token=os.environ["LAUNCHPAD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_SECRET"],
+        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
+        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
+        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
         session=session,
-        auth_consumer="image.build",
+        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
     )
 
     build = launchpad.request(build_url).json()

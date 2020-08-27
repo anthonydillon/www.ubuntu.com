@@ -55,6 +55,8 @@ class CVE(Base):
     )
     cvss3 = Column(Float)
     references = Column(JSON)
+    patches = Column(JSON)
+    tags = Column(JSON)
     bugs = Column(JSON)
     status = Column(
         Enum("not-in-ubuntu", "active", "rejected", name="cve_statuses")
@@ -65,18 +67,18 @@ class CVE(Base):
     )
 
     @hybrid_property
-    def status_tree(self):
-        status_tree = defaultdict(dict)
+    def packages(self):
+        packages = defaultdict(dict)
         for status in self.statuses:
-            status_tree[status.package_name][status.release_codename] = status
+            packages[status.package_name][status.release_codename] = status
 
-        return status_tree
+        return packages
 
     @hybrid_property
     def active_status_tree(self):
         active_package_statuses = {}
 
-        for package_name, release_statuses in self.status_tree.items():
+        for package_name, release_statuses in self.packages.items():
             for status in release_statuses.values():
                 if (
                     status.status in Status.active_statuses
@@ -167,8 +169,10 @@ class Status(Base):
     )
     description = Column(String)
     component = Column(
-        Enum("main", "universe", "esm-infra", "esm-apps", name="components"),
-        server_default="main",
+        Enum("main", "universe", name="components"),
+    )
+    pocket = Column(
+        Enum("security", "updates", "esm-infra", "esm-apps", name="pockets"),
     )
 
     cve = relationship("CVE", back_populates="statuses")
