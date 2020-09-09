@@ -158,12 +158,12 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/download/<regex('cloud|raspberry-pi'):category>/thank-you",
+    "/download/<regex('cloud|raspberry-pi|desktop'):category>/thank-you",
     view_func=download_thank_you,
 )
 
 app.add_url_rule(
-    "/download/<regex('desktop|server'):category>",
+    "/download/<regex('server'):category>",
     methods=["GET", "POST"],
     view_func=download_harness,
 )
@@ -179,9 +179,7 @@ app.add_url_rule(
 # blog section
 
 blog_views = BlogViews(
-    api=BlogAPI(session=session),
-    excluded_tags=[3184, 3265, 3408],
-    per_page=11,
+    api=BlogAPI(session=session), excluded_tags=[3184, 3265, 3408], per_page=11
 )
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
@@ -287,7 +285,7 @@ tutorials_docs.init_app(app)
 # Ceph docs
 ceph_docs = DiscourseDocs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs",
+        api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
     document_template="/ceph/document.html",
     url_prefix="/ceph/docs",
