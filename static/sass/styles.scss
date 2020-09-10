@@ -53,6 +53,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_heading-icon";
 @import "pattern_icons";
 @import "pattern_lightbox";
+@import "pattern_links";
 @import "pattern_lists";
 @import "pattern_matrix";
 @import "pattern_navigation";
@@ -93,6 +94,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
 @include ubuntu-p-lightbox;
+@include ubuntu-p-links;
 @include ubuntu-p-lists;
 @include ubuntu-p-matrix;
 @include ubuntu-p-navigation;
@@ -771,4 +773,11 @@ body {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.u-lower {
+  @media only screen and (min-width: $breakpoint-small) {
+    position: relative;
+    top: 2.5rem;
+  }
 }
