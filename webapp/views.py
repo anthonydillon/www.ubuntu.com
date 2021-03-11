@@ -125,8 +125,13 @@ def download_thank_you(category):
 
 
 def appliance_install(appliance, device):
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+    # with open("appliances.yaml") as appliances:
+    #     appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+
+    response = session.request(
+        method="GET",
+        url="http://10.48.130.120:8000/api/v0/supportedapplianceplatforms/?format=json",
+    )
 
     return flask.render_template(
         f"appliance/{appliance}/{device}.html",
@@ -136,13 +141,18 @@ def appliance_install(appliance, device):
 
 
 def appliance_portfolio():
-    with open("appliances.yaml") as appliances:
-        appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+    # with open("appliances.yaml") as appliances:
+    #     appliances = yaml.load(appliances, Loader=yaml.FullLoader)
+
+    response = session.request(
+        method="GET",
+        url="http://10.48.130.120:8000/api/v0/appliances/?format=json",
+    )
 
     return flask.render_template(
         "appliance/portfolio.html",
         http_host=flask.request.host,
-        appliances=appliances["appliances"],
+        appliances=response.json().get("results", []),
     )
 
 
