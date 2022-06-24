@@ -95,7 +95,8 @@ def sixteen_zero_four():
     try:
         response = session.request(
             method="GET",
-            url="https://ubuntu.com/security/notices.json?release=xenial&limit=5",
+            url="https://ubuntu.com/security/"\
+                "notices.json?release=xenial&limit=5",
         )
 
         total_notices_issued = response.json().get("total_results")
