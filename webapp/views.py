@@ -91,7 +91,7 @@ def _build_mirror_list(local=False):
 def sixteen_zero_four():
     total_notices_issued = "0"
     latest_notices = []
-    
+
     try:
         response = session.request(
             method="GET",
