@@ -26,6 +26,12 @@
   stroke-width: 1px;
 }
 
+.chart__bar--blue {
+  fill: $color-information;
+  stroke: $color-information;
+  stroke-width: 1px;
+}
+
 .chart__bar--green {
   fill: green;
   stroke: green;

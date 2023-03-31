@@ -99,6 +99,18 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
+    startDate: new Date("2020-04-24T00:00:00"),
+    endDate: new Date("2025-04-23T00:00:00"),
+    taskName: "18.04 FIPS 140-2",
+    status: "FIPS",
+  },
+  {
+    startDate: new Date("2025-04-01T00:00:00"),
+    endDate: new Date("2030-04-01T00:00:00"),
+    taskName: "18.04 FIPS 140-3",
+    status: "FIPS_ESTIMATED",
+  },
+  {
     startDate: new Date("2020-04-01T00:00:00"),
     endDate: new Date("2025-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
@@ -109,6 +121,18 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2030-04-02T00:00:00"),
     taskName: "20.04 LTS (Focal Fossa)",
     status: "ESM",
+  },
+  {
+    startDate: new Date("2021-04-02T00:00:00"),
+    endDate: new Date("2026-05-18T00:00:00"),
+    taskName: "20.04 FIPS 140-2",
+    status: "FIPS",
+  },
+  {
+    startDate: new Date("2026-05-01T00:00:00"),
+    endDate: new Date("2031-05-01T00:00:00"),
+    taskName: "20.04 FIPS 140-3",
+    status: "FIPS_ESTIMATED",
   },
   {
     startDate: new Date("2020-10-01T00:00:00"),
@@ -133,6 +157,12 @@ export var serverAndDesktopReleases = [
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
+  },
+  {
+    startDate: new Date("2025-02-01T00:00:00"),
+    endDate: new Date("2030-02-01T00:00:00"),
+    taskName: "22.04 FIPS 140-3",
+    status: "FIPS_ESTIMATED",
   },
   {
     startDate: new Date("2022-10-20T00:00:00"),
@@ -1397,6 +1427,8 @@ export var desktopServerStatus = {
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
   INTERIM_RELEASE: "chart__bar--grey",
   ESM: "chart__bar--aubergine",
+  FIPS_ESTIMATED: "chart__bar--orange-light",
+  FIPS: "chart__bar--blue",
 };
 
 export var kernelStatus = {
@@ -1446,11 +1478,16 @@ export var smallReleaseNames = [
 export var desktopServerReleaseNames = [
   "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
+  "22.04 FIPS 140-3",
   "21.10 (Impish Indri)",
   "21.04 (Hirsute Hippo)",
   "20.10 (Groovy Gorilla)",
   "20.04 LTS (Focal Fossa)",
+  "20.04 FIPS 140-2",
+  "20.04 FIPS 140-3",
   "18.04 LTS (Bionic Beaver)",
+  "18.04 FIPS 140-2",
+  "18.04 FIPS 140-3",
   "16.04 LTS (Xenial Xerus)",
   "14.04 LTS (Trusty Tahr)",
 ];
